@@ -1,0 +1,19 @@
+.article-image {
+    width: 240px;
+    height: auto;
+}
+
+.more-article-information {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.like-btn {
+    padding-left: 7px;
+}
+
+.article-container {
+    cursor: pointer;
+}

@@ -1,0 +1,28 @@
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-menu {
+    list-style-type: none;
+    display: flex;
+    width: 300px;
+    justify-content: space-around;
+}
+
+.header-menu>* {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4B372F;
+    background-color: #e9d2c0;
+    width: 70px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.logo {
+    width: 350px;
+    height: 350px;
+}
