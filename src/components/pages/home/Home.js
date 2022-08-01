@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Article } from "../common/article/Article";
+import { Article } from "../../common/article/Article";
 import styles from "./Home.module.css";
 
 export const Home = () => {

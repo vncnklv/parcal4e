@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./header.module.css"
 import logo from './logo.png';
 export const Header = () => {
@@ -5,17 +6,19 @@ export const Header = () => {
         <header className={styles['site-header']}>
             <div className={styles['menu-wrapper']}>
                 <ul className={styles['header-menu']}>
-                    <li>Men</li>
-                    <li>Women</li>
-                    <li>Kids</li>
+                    <Link to='/catalog/men'><li>Men</li></Link>
+                    <Link to='/catalog/women'><li>Women</li></Link>
+                    <Link to='/catalog/kids'><li>Kids</li></Link>
                 </ul>
             </div>
-            <img src={logo} className={styles.logo}/>
+            <Link to='/'>
+                <img src={logo} className={styles.logo} />
+            </Link>
             <div className={styles['menu-wrapper']}>
                 <ul className={styles['header-menu']}>
-                    <li>Login</li>
-                    <li>Register</li>
-                    <li>Logout</li>
+                    <Link to='/login'><li>Login</li></Link>
+                    <Link to='/register'><li>Register</li></Link>
+                    <Link to='/logout'><li>Logout</li></Link>
                 </ul>
             </div>
         </header >
