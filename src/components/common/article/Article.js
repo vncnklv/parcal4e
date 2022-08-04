@@ -16,7 +16,7 @@ export const Article = ({
         <Link to={`/details/${_id}`}>
             <article className={styles['article-container']}>
                 <div>
-                    <img src={images[0]} className={styles['article-image']} />
+                    <img src={images[0]} className={styles['article-image']} alt='article'/>
                 </div>
                 <div className={styles['article-information']}>
                     <div>

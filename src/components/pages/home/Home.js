@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import { Article } from "../../common/article/Article";
+
+import { getBestSellers } from "../../../services/article";
+
 import styles from "./Home.module.css";
 
 export const Home = () => {
     const [articles, setArticles] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3030/articles/most-liked')
-            .then(res => res.json())
-            .then(data => { setArticles(data) 
-            console.log(data);
-            })
+        getBestSellers()
+            .then(result => setArticles(result));
     }, []);
 
     return (
