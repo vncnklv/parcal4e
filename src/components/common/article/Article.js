@@ -10,6 +10,7 @@ export const Article = ({
     brand,
     price,
     likes,
+    color,
     _id
 }) => {
     return (

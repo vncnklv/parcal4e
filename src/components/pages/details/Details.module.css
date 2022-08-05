@@ -2,3 +2,25 @@
     width: 550px;
     height: 750px;
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.articleInfo {
+    flex: 1;
+    padding-left: 50px;
+}
+
+.sizes>* {
+    padding: 0 10px;
+}
+
+.name {
+    margin: 0;
+}
+
+.brand {
+    margin: 0;
+}

@@ -20,10 +20,27 @@ export const Details = () => {
             });
     }, [id, navigate]);
 
+    console.log(article);
+
     return (
         <main>
-            <div className={styles['slider-container']}>
-                <ImageSlider images={article.images}/>
+            <div className={styles.container}>
+                <div className={styles['slider-container']}>
+                    <ImageSlider images={article.images} />
+                </div>
+                <div className={styles.articleInfo}>
+                    <h1 className={styles.name}>{article.name}</h1>
+                    <p className={styles.brand}>{article.brand}</p>
+                    <hr />
+                    <p>{article.description}</p>
+                    <div className={styles.sizes}>
+                        Available in sizes:
+                        {article.sizes && article.sizes.map((s, i) => <span key={i}>{s}</span>)}
+                    </div>
+                    <p>Age group: {article.age_group}</p>
+                    <p>Color: {article.color}</p>
+                    <p>Price: {article.price} $</p>
+                </div>
             </div>
         </main>
     );
