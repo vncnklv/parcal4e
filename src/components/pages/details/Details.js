@@ -20,8 +20,6 @@ export const Details = () => {
             });
     }, [id, navigate]);
 
-    console.log(article);
-
     return (
         <main>
             <div className={styles.container}>
@@ -40,6 +38,13 @@ export const Details = () => {
                     <p>Age group: {article.age_group}</p>
                     <p>Color: {article.color}</p>
                     <p>Price: {article.price} $</p>
+                    <div className={styles.buttons}>
+                        {/* show if user is owner */}
+                        <div className={styles.editBtn}>Edit</div>
+                        <div className={styles.delBtn}>Delete</div>
+                        {/* show if user is not owner or there is not user */}
+                        <div className={styles.likeBtn}>Like</div>
+                    </div>
                 </div>
             </div>
         </main>

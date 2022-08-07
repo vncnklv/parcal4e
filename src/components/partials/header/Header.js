@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../contexts/AuthProvider";
+
 import styles from "./header.module.css"
 import logo from './logo.png';
+
 export const Header = () => {
+    const { user } = useAuth();
     return (
         <header className={styles['site-header']}>
             <div className={styles['menu-wrapper']}>
@@ -12,13 +16,17 @@ export const Header = () => {
                 </ul>
             </div>
             <Link to='/'>
-                <img src={logo} className={styles.logo} alt='logo'/>
+                <img src={logo} className={styles.logo} alt='logo' />
             </Link>
             <div className={styles['menu-wrapper']}>
                 <ul className={styles['header-menu']}>
-                    <Link to='/login'><li>Login</li></Link>
-                    <Link to='/register'><li>Register</li></Link>
-                    <Link to='/logout'><li>Logout</li></Link>
+                    {!user._id ?
+                        <>
+                            <Link to='/login'><li>Login</li></Link>
+                            <Link to='/register'><li>Register</li></Link>
+                        </>
+                        : <Link to='/logout'><li>Logout</li></Link>
+                    }
                 </ul>
             </div>
         </header >

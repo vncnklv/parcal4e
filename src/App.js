@@ -9,30 +9,34 @@ import { Details } from './components/pages/details/Details';
 import { Login } from './components/pages/login/Login';
 import { Register } from './components/pages/register/Register';
 import { NotFound } from './components/pages/not-found/NotFound';
+import { Logout } from './components/pages/logout/Logout';
 
 import styles from "./App.module.css"
+import { AuthProvider } from './contexts/AuthProvider';
 
 function App() {
-  return (
-    <div className={styles.container}>
-      <Router>
-        <Header />
+    return (
+        <Router>
+            <AuthProvider>
+                <div className={styles.container}>
+                    <Header />
 
-        <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/catalog/:category' element={<Catalog />} />
-          <Route path='/details/:id' element={<Details />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/not-found' element={<NotFound />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/catalog/:category' element={<Catalog />} />
+                        <Route path='/details/:id' element={<Details />} />
+                        <Route path='/login' element={<Login />} />
+                        <Route path='/register' element={<Register />} />
+                        <Route path='/logout' element={<Logout />} />
+                        <Route path='/not-found' element={<NotFound />} />
+                        <Route path='*' element={<NotFound />} />
+                    </Routes>
 
-      </Router>
-
-      <Footer />
-    </div>
-  );
+                    <Footer />
+                </div>
+            </AuthProvider>
+        </Router>
+    );
 }
 
 export default App;

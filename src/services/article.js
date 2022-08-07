@@ -1,11 +1,11 @@
+import { get } from "./requester";
+
 const baseUrl = 'http://localhost:3030/articles';
 
 export const getBestSellers = async () => {
-    const res = await fetch(`${baseUrl}/most-liked`)
-    return res.json();
+    return get(`${baseUrl}/most-liked`);
 }
 
 export const getArticleById = async (articleId) => {
-    const res = await fetch(`${baseUrl}/${articleId}`);
-    return res.json();
+    return get(`${baseUrl}/${articleId}`);
 }

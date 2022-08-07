@@ -24,3 +24,31 @@
 .brand {
     margin: 0;
 }
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+}
+
+.buttons>* {
+    line-height: 30px;
+    text-align: center;
+    width: 60px;
+    height: 30px;
+}
+
+.buttons>*:not(:first-child) {
+    margin-left: 10px;
+}
+
+.delBtn {
+    background-color: red;
+}
+
+.editBtn {
+    background-color: orange;
+}
+
+.likeBtn {
+    background-color: lightblue;
+}
