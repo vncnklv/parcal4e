@@ -8,7 +8,7 @@ const request = async (url, method = 'GET', body) => {
 
     if (body) options.body = JSON.stringify(body);
 
-    const token = localStorage.getItem('user').token;
+    const token = JSON.parse(localStorage.getItem('user')).token;
     if (token) options.headers['X-Authorization'] = token;
 
     const res = await fetch(url, options);
