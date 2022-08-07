@@ -8,13 +8,14 @@ const request = async (url, method = 'GET', body) => {
 
     if (body) options.body = JSON.stringify(body);
 
-    const token = JSON.parse(localStorage.getItem('user')).token;
-    if (token) options.headers['X-Authorization'] = token;
+    const userData = JSON.parse(localStorage.getItem('user'));
+    if (userData) options.headers['X-Authorization'] = userData.token;
 
     const res = await fetch(url, options);
 
     if (!res.ok) {
-
+        const text = await res.text();
+        throw JSON.parse(text)
     }
 
     return res.json();

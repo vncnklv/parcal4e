@@ -7,6 +7,8 @@ export const Login = () => {
         password: ''
     });
 
+    const [error, setError] = useState({});
+
     const { userLogin } = useAuth();
 
     const changeHandler = (e) => {
@@ -19,7 +21,8 @@ export const Login = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        userLogin(userData.username, userData.password);
+        userLogin(userData.username, userData.password)
+            .catch(err => setError(err));
     }
 
     return (
@@ -36,6 +39,7 @@ export const Login = () => {
                 </label>
 
                 <input type="submit" value="Login" />
+                {error && <span>{error.message}</span>}
             </form>
         </main>
     );

@@ -1,13 +1,11 @@
+import { get, post } from "./requester";
+
 const baseUrl = 'http://localhost:3030/user';
 
 export const login = async (username, password) => {
-    const res = await fetch(`${baseUrl}/login`, {
-        method: 'POST',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify({ username, password })
-    });
+    return post(`${baseUrl}/login`, { username, password });
+};
 
-    return res.json();
+export const logout = async (username, password) => {
+    return get(`${baseUrl}/logout`);
 };

@@ -3,7 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import { useNavigate } from 'react-router-dom';
 
-import { login } from '../services/auth';
+import { login, logout } from '../services/auth';
 
 const Context = createContext({});
 
@@ -13,8 +13,9 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({});
-    const [value, setLocalStorageValue] = useLocalStorage('user', {});
+    const [value, setLocalStorageValue, removeLocalStorageValue] = useLocalStorage('user', {});
     const navigate = useNavigate();
+
 
     useEffect(() => {
         if (value.token) {
@@ -22,18 +23,17 @@ export const AuthProvider = ({ children }) => {
         }
     }, [value])
 
-    const userLogin = (username, password) => {
-        login(username, password)
-            .then(res => {
-                setUser({ token: res.token, username, _id: res._id })
-                setLocalStorageValue({ token: res.token, username, _id: res._id });
-                navigate('/');
-            });
+    const userLogin = async (username, password) => {
+        const user = await login(username, password);
+        setUser({ token: user.token, username, _id: user._id });
+        setLocalStorageValue({ token: user.token, username, _id: user._id });
+        navigate('/');
     }
 
-    const userLogout = () => {
-        setUser({})
-        setLocalStorageValue({});
+    const userLogout = async () => {
+        await logout();
+        setUser({});
+        removeLocalStorageValue();
     }
 
     return (
