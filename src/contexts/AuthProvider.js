@@ -12,7 +12,7 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    const [user, setUser] = useState(null);
     const [value, setLocalStorageValue, removeLocalStorageValue] = useLocalStorage('user', {});
     const navigate = useNavigate();
 
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
     const userLogout = async () => {
         await logout();
-        setUser({});
+        setUser(null);
         removeLocalStorageValue();
     }
 

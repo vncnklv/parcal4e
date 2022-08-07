@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom"
+    ;
 import { getArticleById } from "../../../services/article";
+
 import { ImageSlider } from "./image-slider/ImageSlider";
 
 import styles from './Details.module.css';
+
+import { useAuth } from "../../../contexts/AuthProvider";
 
 export const Details = () => {
     const [article, setArticle] = useState({});
     const { id } = useParams();
     const navigate = useNavigate();
+
+    const { user } = useAuth();
 
     useEffect(() => {
         getArticleById(id)
@@ -38,12 +44,15 @@ export const Details = () => {
                     <p>Age group: {article.age_group}</p>
                     <p>Color: {article.color}</p>
                     <p>Price: {article.price} $</p>
+                    <p>Likes: {article.likes}</p>
                     <div className={styles.buttons}>
-                        {/* show if user is owner */}
-                        <div className={styles.editBtn}>Edit</div>
-                        <div className={styles.delBtn}>Delete</div>
-                        {/* show if user is not owner or there is not user */}
-                        <div className={styles.likeBtn}>Like</div>
+                        {(user && user._id == article._ownerId) &&
+                            <>
+                                <Link to={`/edit/${article._id}`} className={styles.editBtn}>Edit</Link>
+                                <Link to={`/delete/${article._id}`} className={styles.delBtn}>Delete</Link>
+                            </>
+                        }
+                        {(user && user._id !== article._ownerId) && <div className={styles.likeBtn}>Like</div>}
                     </div>
                 </div>
             </div>
