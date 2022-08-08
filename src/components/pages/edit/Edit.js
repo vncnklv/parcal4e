@@ -24,7 +24,6 @@ export const Edit = () => {
 
                 setArticle(result)
             });
-        console.log(article);
     }, [id, navigate, user]);
 
     const changeHandler = (e) => {
@@ -39,7 +38,7 @@ export const Edit = () => {
         const size = e.target.name.toLowerCase();
         const index = article.sizes.indexOf(size);
 
-        if(index == -1) {
+        if(index === -1) {
             setArticle(oldData => {
                 const newData = { ...oldData };
                 newData.sizes.push(size);

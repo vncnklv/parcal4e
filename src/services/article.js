@@ -11,6 +11,13 @@ export const getArticleById = async (articleId) => {
 }
 
 export const edit = (articleId, data) => {
-    console.log(articleId, data);
     return patch(`${baseUrl}/${articleId}`, data);
+}
+
+export const like = (articleId) => {
+    return get(`${baseUrl}/${articleId}/like`);
+}
+
+export const dislike = (articleId) => {
+    return get(`${baseUrl}/${articleId}/dislike`);
 }
