@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import { dislike, getArticleById, like } from "../../../services/article";
+import { deleteArticle, dislike, getArticleById, like } from "../../../services/article";
 
 import { ImageSlider } from "./image-slider/ImageSlider";
 
@@ -36,6 +36,11 @@ export const Details = () => {
             .then(updatedArticle => setArticle(updatedArticle));
     }
 
+    const deleteHandler = () => {
+        deleteArticle(article._id)
+            .then(() => navigate('/'));
+    }
+
     const showLikeBtn = article.likedBy && user && user._id !== article._ownerId && !article.likedBy.includes(user._id);
     const showDislikeBtn = article.likedBy && user && user._id !== article._ownerId && article.likedBy.includes(user._id);
 
@@ -62,7 +67,7 @@ export const Details = () => {
                         {(user && user._id === article._ownerId) &&
                             <>
                                 <Link to={`/edit/${article._id}`} className={styles.editBtn}>Edit</Link>
-                                <Link to={`/delete/${article._id}`} className={styles.delBtn}>Delete</Link>
+                                <div className={styles.delBtn} onClick={deleteHandler}>Delete</div>
                             </>
                         }
                         {showLikeBtn && <div className={styles.likeBtn} onClick={likeHandler}>Like</div>}
