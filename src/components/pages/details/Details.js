@@ -39,7 +39,7 @@ export const Details = () => {
                     <p>{article.description}</p>
                     <div className={styles.sizes}>
                         Available in sizes:
-                        {article.sizes && article.sizes.map((s, i) => <span key={i}>{s}</span>)}
+                        {article.sizes && article.sizes.map((s, i) => <span key={i}>{s.toUpperCase()}</span>)}
                     </div>
                     <p>Age group: {article.age_group}</p>
                     <p>Color: {article.color}</p>

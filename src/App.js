@@ -10,6 +10,7 @@ import { Login } from './components/pages/login/Login';
 import { Register } from './components/pages/register/Register';
 import { NotFound } from './components/pages/not-found/NotFound';
 import { Logout } from './components/pages/logout/Logout';
+import { Edit } from './components/pages/edit/Edit';
 
 import styles from "./App.module.css"
 import { AuthProvider } from './contexts/AuthProvider';
@@ -25,6 +26,7 @@ function App() {
                         <Route path='/' element={<Home />} />
                         <Route path='/catalog/:category' element={<Catalog />} />
                         <Route path='/details/:id' element={<Details />} />
+                        <Route path='/edit/:id' element={<Edit />} />
                         <Route path='/login' element={<Login />} />
                         <Route path='/register' element={<Register />} />
                         <Route path='/logout' element={<Logout />} />

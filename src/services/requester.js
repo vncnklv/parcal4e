@@ -15,7 +15,7 @@ const request = async (url, method = 'GET', body) => {
 
     if (!res.ok) {
         const text = await res.text();
-        throw JSON.parse(text)
+        throw JSON.parse(text);
     }
 
     return res.json();
@@ -23,5 +23,5 @@ const request = async (url, method = 'GET', body) => {
 
 export const get = (url) => request(url); 
 export const post = (url, body) => request(url, 'POST', body); 
-export const patch = (url, body) => request(url, 'POST', body); 
+export const patch = (url, body) => request(url, 'PATCH', body); 
 export const del = (url) => request(url, "DELETE"); 
