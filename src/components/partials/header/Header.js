@@ -21,7 +21,10 @@ export const Header = () => {
             <div className={styles['menu-wrapper']}>
                 <ul className={styles['header-menu']}>
                     {user
-                        ? <Link to='/logout'><li>Logout</li></Link>
+                        ? <>
+                            <Link to='/create'><li>Add</li></Link>
+                            <Link to='/logout'><li>Logout</li></Link>
+                        </>
                         : <>
                             <Link to='/login'><li>Login</li></Link>
                             <Link to='/register'><li>Register</li></Link>

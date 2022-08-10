@@ -1,4 +1,4 @@
-import { get, patch, del } from "./requester";
+import { get, patch, del, post } from "./requester";
 
 const baseUrl = 'http://localhost:3030/articles';
 
@@ -14,6 +14,10 @@ export const edit = (articleId, data) => {
     return patch(`${baseUrl}/${articleId}`, data);
 }
 
+export const create = (data) => {
+    return post(baseUrl, data);
+}
+
 export const like = (articleId) => {
     return get(`${baseUrl}/${articleId}/like`);
 }
@@ -23,6 +27,5 @@ export const dislike = (articleId) => {
 }
 
 export const deleteArticle = (articleId) => {
-    console.log('hii');
     return del(`${baseUrl}/${articleId}`);
 } 

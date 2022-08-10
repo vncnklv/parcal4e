@@ -9,3 +9,7 @@ export const login = async (username, password) => {
 export const logout = async (username, password) => {
     return get(`${baseUrl}/logout`);
 };
+
+export const verifyToken = async () => {
+    return  get(`${baseUrl}/verifyToken`);
+};

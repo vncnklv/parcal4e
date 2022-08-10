@@ -3,7 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import { useNavigate } from 'react-router-dom';
 
-import { login, logout } from '../services/auth';
+import { login, logout, verifyToken } from '../services/auth';
 
 const Context = createContext({});
 
@@ -16,12 +16,16 @@ export const AuthProvider = ({ children }) => {
     const [value, setLocalStorageValue, removeLocalStorageValue] = useLocalStorage('user', {});
     const navigate = useNavigate();
 
-
     useEffect(() => {
         if (value.token) {
-            setUser(value);
+            verifyToken()
+                .then(() => setUser(value))
+                .catch(() => {
+                    setUser(null);
+                    removeLocalStorageValue();
+                });
         }
-    }, [value])
+    }, [value, removeLocalStorageValue])
 
     const userLogin = async (username, password) => {
         const user = await login(username, password);
@@ -31,7 +35,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     const userLogout = async () => {
-        await logout();
+        await logout()
         setUser(null);
         removeLocalStorageValue();
     }

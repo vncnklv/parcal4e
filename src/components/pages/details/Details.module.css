@@ -43,6 +43,7 @@
 
 .delBtn {
     background-color: red;
+    cursor: pointer;
 }
 
 .editBtn {

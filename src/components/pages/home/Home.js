@@ -10,7 +10,7 @@ export const Home = () => {
 
     useEffect(() => {
         getBestSellers()
-            .then(result => setArticles(result));
+            .then(result => {setArticles(result); console.log(result);});
     }, []);
 
     return (
