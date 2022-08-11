@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { create } from "../../../services/article";
 import { InputField } from "./input-field/InputField";
 
+import styles from "./Create.module.css";
+
 export const Create = () => {
     const [article, setArticle] = useState({
         name: "",
@@ -25,7 +27,7 @@ export const Create = () => {
             newData[e.target.name] = e.target.value;
             return newData;
         });
-    }
+    };
 
     const checkboxChangeHandler = (e) => {
         const size = e.target.name.toLowerCase();
@@ -44,18 +46,18 @@ export const Create = () => {
                 return newData;
             });
         }
-    }
+    };
 
     const checked = (size) => {
         return article.sizes && article.sizes.includes(size.toLowerCase());
-    }
+    };
 
     const imageLinkChangeHandler = (e) => {
         setImageLink(e.target.value);
-    }
+    };
 
 
-    const addLinkToArticle = (e) => {
+    const addImageHandler = (e) => {
         if (imageLink.length > 0) {
             setArticle(oldData => {
                 const newData = { ...oldData };
@@ -64,6 +66,14 @@ export const Create = () => {
             });
             setImageLink('');
         }
+    };
+
+    const removeImageHandler = (e) => {
+        setArticle(oldData => {
+            const newData = { ...oldData };
+            newData.images.splice(newData.images.indexOf(e.target.src, 1));
+            return newData;
+        });
     }
 
     const submitHandler = (e) => {
@@ -71,7 +81,7 @@ export const Create = () => {
         create(article)
             .then((res) => navigate(`/details/${res._id}`))
             .catch(err => setErrors(err.errors));
-    }
+    };
 
     return (
         <main>
@@ -79,9 +89,14 @@ export const Create = () => {
 
             <form onSubmit={submitHandler}>
                 <div>
-                    {article.images.map((link, index) => <div key={link + index}>{link}</div>)}
+                    {article.images.length > 0 &&
+                        <div>
+                            {article.images.map((link, index) => <img key={link + index} src={link} className={styles.uploadedImage} onClick={removeImageHandler} />)}
+                        </div>
+                    }
                     <InputField label="Image Link" name="link" value={imageLink} changeHandler={imageLinkChangeHandler} />
-                    <button type="button" onClick={addLinkToArticle}>Add</button>
+                    <button type="button" onClick={addImageHandler}>Add</button>
+                    {errors.images && <div>{errors.images}</div>}
                 </div>
 
                 <div>
@@ -95,12 +110,20 @@ export const Create = () => {
                 </div>
 
                 <div>
-                    <InputField label="Age group" name="age_group" value={article.age_group} changeHandler={changeHandler} />
+                    <label htmlFor="ageGroup">Age group</label>
+                    <select value={article.age_group} onChange={changeHandler} name="age_group" id="ageGroup">
+                        <option value="adult">Adult</option>
+                        <option value="kids">Kids</option>
+                    </select>
                     {errors.age_group && <div>{errors.age_group}</div>}
                 </div>
 
                 <div>
-                    <InputField label="Gender" name="gender" value={article.gender} changeHandler={changeHandler} />
+                    <label htmlFor="gender">Gender</label>
+                    <select value={article.gender} onChange={changeHandler} name="gender" id="gender">
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
                     {errors.gender && <div>{errors.gender}</div>}
                 </div>
 
