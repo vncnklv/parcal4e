@@ -9,8 +9,8 @@ export const Create = () => {
     const [article, setArticle] = useState({
         name: "",
         images: [],
-        age_group: "",
-        gender: "",
+        age_group: "adult",
+        gender: "male",
         description: "",
         sizes: [],
         price: 0,
@@ -91,7 +91,15 @@ export const Create = () => {
                 <div>
                     {article.images.length > 0 &&
                         <div>
-                            {article.images.map((link, index) => <img key={link + index} src={link} className={styles.uploadedImage} onClick={removeImageHandler} />)}
+                            {article.images.map((link, index) =>
+                                <img
+                                    key={link + index}
+                                    src={link}
+                                    className={styles.uploadedImage}
+                                    onClick={removeImageHandler}
+                                    alt="Image not found"
+                                />
+                            )}
                         </div>
                     }
                     <InputField label="Image Link" name="link" value={imageLink} changeHandler={imageLinkChangeHandler} />
@@ -157,7 +165,7 @@ export const Create = () => {
                     {errors.sizes && <div>{errors.sizes}</div>}
                 </div>
 
-                <input type="submit" value="Add" />
+                <button>Add</button>
             </form>
         </main>
     );
