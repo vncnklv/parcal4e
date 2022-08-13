@@ -10,8 +10,8 @@ export const Header = () => {
         <header className={styles['site-header']}>
             <div className={styles['menu-wrapper']}>
                 <ul className={styles['header-menu']}>
-                    <Link to='/catalog/men'><li>Men</li></Link>
-                    <Link to='/catalog/women'><li>Women</li></Link>
+                    <Link to='/catalog/male'><li>Men</li></Link>
+                    <Link to='/catalog/female'><li>Women</li></Link>
                     <Link to='/catalog/kids'><li>Kids</li></Link>
                 </ul>
             </div>
