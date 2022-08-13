@@ -11,5 +11,9 @@ export const logout = async (username, password) => {
 };
 
 export const verifyToken = async () => {
-    return  get(`${baseUrl}/verifyToken`);
+    return get(`${baseUrl}/verifyToken`);
 };
+
+export const getUserById = (id) => {
+    return get(`${baseUrl}/${id}`);
+}

@@ -23,7 +23,7 @@ export const Header = () => {
                     {user
                         ? <>
                             <Link to='/create'><li>Add</li></Link>
-                            <Link to='/profile'><li>Profile</li></Link>
+                            <Link to='/user-profile'><li>Profile</li></Link>
                             <Link to='/logout'><li>Logout</li></Link>
                         </>
                         : <>
