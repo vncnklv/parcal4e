@@ -4,13 +4,13 @@ export const InputField = ({
 
     const props = {
         name,
-        onChange: changeHandler,
         type: type || 'text'
     }
 
     if (value) props.value = value;
     if (checked) props.checked = checked;
-    
+    if (changeHandler) props.onChange = changeHandler;
+
     return (
         <label htmlFor={name}>
             {label}

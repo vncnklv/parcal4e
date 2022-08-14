@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { create } from "../../../services/article";
-import { InputField } from "./input-field/InputField";
+import { InputField } from "../../common/input-field/InputField";
 
 import styles from "./Create.module.css";
 
