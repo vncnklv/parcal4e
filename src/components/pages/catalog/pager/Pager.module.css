@@ -1,0 +1,18 @@
+.container {
+    height: 50px;
+    display: flex;
+    gap: 30px;
+    justify-content: end;
+    align-items: center;
+}
+
+.btn {
+    background-color: #e9d2c0;
+    color: #4B372F;
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

@@ -34,8 +34,8 @@ export const deleteArticle = (articleId) => {
     return del(`${baseUrl}/${articleId}`);
 }
 
-export const getArticlesByCategory = (category, sorts = {}) => {
-    let url = `${baseUrl}?gender=${category}`;
+export const getArticlesByCategory = (category, sorts = {}, page = 1) => {
+    let url = `${baseUrl}?gender=${category}&page=${page}&limit=${4}`;
 
     let sortQueryString;
 

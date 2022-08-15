@@ -4,67 +4,60 @@ import { getArticlesByCategory } from "../../../services/article";
 import { Article } from "../../common/article/Article";
 
 import styles from "./Catalog.module.css";
-import { Filters } from "./filters/Filters";
+
+import { Pager } from "./pager/Pager";
 import { Sorts } from "./sorts/Sorts";
 
 export const Catalog = () => {
     const [articles, setArticles] = useState([]);
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [queryStringParams, setQueryStringParams] = useState({
-        sorts: {},
-        filter: {}
+    const [sorts, setSorts] = useState({});
+    const [pages, setPages] = useState({
+        page: 1
     });
     const { category } = useParams();
 
     useEffect(() => {
-        const likesString = searchParams.get('likes');
-        const priceString = searchParams.get('price');
+        getArticlesByCategory(category, sorts, pages.page)
+            .then(res => {
+                setArticles(res.result);
+                setPages(oldPages => ({
+                    ...oldPages,
+                    maxPages: Number(res.max_pages)
+                }));
+            });
+    }, [category, pages.page, sorts]);
 
-        setQueryStringParams(old => {
-            const newData = { ...old };
-            if (likesString) newData.sorts.likes = likesString;
-            if (priceString) newData.sorts.price = priceString;
-            return newData;
-        });
-
-        getArticlesByCategory(category, queryStringParams.sorts)
-            .then(res => setArticles(res.result));
-    }, [category, queryStringParams.sorts, searchParams]);
-
-    const sortHandler = (e) => {
-        e.preventDefault();
-
-        getArticlesByCategory(category, queryStringParams.sorts)
-            .then(res => setArticles(res.result));
-
-        setSearchParams(queryStringParams.sorts);
+    const sortHandler = (newSortData) => {
+        setSorts(newSortData);
     };
 
-    const sortChangeHandler = (e) => {
-        setQueryStringParams(old => {
-            const newData = { ...old };
-            if (!e.target.checked) {
-                delete newData.sorts[e.target.name];
-            } else {
-                newData.sorts[e.target.name] = e.target.value;
-            }
-            return newData;
-        });
-    };
+
+    const goToNextPage = () => {
+        setPages(old => ({
+            ...old,
+            page: old.page === old.maxPages ? old.page : old.page + 1
+        }));
+    }
+
+    const goToPrevPage = () => {
+        setPages(old => ({
+            ...old,
+            page: old.page === 1 ? old.page : old.page - 1
+        }));
+    }
 
     return (
         <main>
             <h1>Catalog</h1>
             <div className={styles.container}>
-                <div className={styles.filtersConteiner}>
-                    <Sorts submitHandler={sortHandler} sorts={queryStringParams.sorts} changeHandler={sortChangeHandler} />
-                    <br />
-                    <Filters />
+                <div className={styles.sortsContainer}>
+                    <Sorts sort={sortHandler} />
                 </div>
                 <div className={styles.articlesContainer}>
                     {articles.map(a => <Article key={a._id} {...a} />)}
                 </div>
             </div>
+            <Pager {...pages} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage} />
         </main>
     );
 }

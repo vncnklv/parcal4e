@@ -5,12 +5,12 @@
 
 }
 
-.filterContainer {
-    background-color: red;
-}
-
 .articlesContainer {
     display: grid;
     grid-template-columns: auto auto auto auto;
     gap: 10px;
+}
+
+.pager {
+    text-align: end;
 }

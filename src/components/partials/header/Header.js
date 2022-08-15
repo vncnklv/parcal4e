@@ -12,7 +12,6 @@ export const Header = () => {
                 <ul className={styles['header-menu']}>
                     <Link to='/catalog/male'><li>Men</li></Link>
                     <Link to='/catalog/female'><li>Women</li></Link>
-                    <Link to='/catalog/kids'><li>Kids</li></Link>
                 </ul>
             </div>
             <Link to='/'>
