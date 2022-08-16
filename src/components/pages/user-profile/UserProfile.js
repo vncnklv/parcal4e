@@ -16,13 +16,11 @@ export const UserProfile = () => {
     const { user } = useAuth();
 
     useEffect(() => {
-        if (user) {
-            getUserById(user._id)
-                .then(res => setUserData(res));
+        getUserById(user._id)
+            .then(res => setUserData(res));
 
-            getUsersArticles()
-                .then(res => setArticles(res));
-        }
+        getUsersArticles()
+            .then(res => setArticles(res));
     }, [user._id]);
 
     return (

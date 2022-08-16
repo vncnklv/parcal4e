@@ -14,7 +14,7 @@ export const Details = () => {
     const { id } = useParams();
     const navigate = useNavigate();
 
-    const { user } = useAuth();
+    const { user, isAuth } = useAuth();
 
     useEffect(() => {
         getArticleById(id)
@@ -41,8 +41,8 @@ export const Details = () => {
             .then(() => navigate('/'));
     }
 
-    const showLikeBtn = article.likedBy && user && user._id !== article._ownerId && !article.likedBy.includes(user._id);
-    const showDislikeBtn = article.likedBy && user && user._id !== article._ownerId && article.likedBy.includes(user._id);
+    const showLikeBtn = article.likedBy && isAuth && user._id !== article._ownerId && !article.likedBy.includes(user._id);
+    const showDislikeBtn = article.likedBy && isAuth && user._id !== article._ownerId && article.likedBy.includes(user._id);
 
     return (
         <main>
@@ -64,7 +64,7 @@ export const Details = () => {
                     <p>Price: {article.price} $</p>
                     <p>Likes: {article.likes}</p>
                     <div className={styles.buttons}>
-                        {(user && user._id === article._ownerId) &&
+                        {(isAuth && user._id === article._ownerId) &&
                             <>
                                 <Link to={`/edit/${article._id}`} className={styles.editBtn}>Edit</Link>
                                 <div className={styles.delBtn} onClick={deleteHandler}>Delete</div>

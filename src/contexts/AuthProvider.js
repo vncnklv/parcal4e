@@ -12,7 +12,8 @@ export const useAuth = () => {
 }
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState({});
+    const [isAuth, setIsAuth] = useState(false);
     const [value, setLocalStorageValue, removeLocalStorageValue] = useLocalStorage('user', {});
     const navigate = useNavigate();
 
@@ -21,7 +22,8 @@ export const AuthProvider = ({ children }) => {
             verifyToken()
                 .then(() => setUser(value))
                 .catch(() => {
-                    setUser(null);
+                    setUser({});
+                    setIsAuth(false);
                     removeLocalStorageValue();
                 });
         }
@@ -31,17 +33,19 @@ export const AuthProvider = ({ children }) => {
         const user = await login(username, password);
         setUser({ token: user.token, username, _id: user._id });
         setLocalStorageValue({ token: user.token, username, _id: user._id });
+        setIsAuth(true);
         navigate('/');
     }
 
     const userLogout = async () => {
         await logout()
-        setUser(null);
+        setUser({});
+        setIsAuth(false);
         removeLocalStorageValue();
     }
 
     return (
-        <Context.Provider value={{ user, userLogin, userLogout }}>
+        <Context.Provider value={{ user, userLogin, userLogout, isAuth }}>
             {children}
         </Context.Provider>
     )

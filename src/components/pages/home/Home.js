@@ -4,14 +4,16 @@ import { Article } from "../../common/article/Article";
 import { getBestSellers } from "../../../services/article";
 
 import styles from "./Home.module.css";
+import { useAuth } from "../../../contexts/AuthProvider";
 
 export const Home = () => {
     const [articles, setArticles] = useState([]);
+    const { isAuth } = useAuth();
 
     useEffect(() => {
         getBestSellers()
-            .then(result => {setArticles(result); console.log(result);});
-    }, []);
+            .then(result => setArticles(result));
+    }, [isAuth]);
 
     return (
         <main>

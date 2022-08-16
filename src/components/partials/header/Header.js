@@ -5,7 +5,7 @@ import styles from "./header.module.css"
 import logo from './logo.png';
 
 export const Header = () => {
-    const { user } = useAuth();
+    const { isAuth } = useAuth();
     return (
         <header className={styles['site-header']}>
             <div className={styles['menu-wrapper']}>
@@ -19,7 +19,7 @@ export const Header = () => {
             </Link>
             <div className={styles['menu-wrapper']}>
                 <ul className={styles['header-menu']}>
-                    {user
+                    {isAuth
                         ? <>
                             <Link to='/create'><li>Add</li></Link>
                             <Link to='/user-profile'><li>Profile</li></Link>
