@@ -3,7 +3,7 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 import { useNavigate } from 'react-router-dom';
 
-import { login, logout, verifyToken } from '../services/auth';
+import { login, logout, register, verifyToken } from '../services/auth';
 
 const Context = createContext({});
 
@@ -31,8 +31,16 @@ export const AuthProvider = ({ children }) => {
 
     const userLogin = async (username, password) => {
         const user = await login(username, password);
-        setUser({ token: user.token, username, _id: user._id });
-        setLocalStorageValue({ token: user.token, username, _id: user._id });
+        setUser({ token: user.token, _id: user._id });
+        setLocalStorageValue({ token: user.token, _id: user._id });
+        setIsAuth(true);
+        navigate('/');
+    }
+
+    const userRegister = async (data) => {
+        const user = await register(data);
+        setUser({ token: user.token, _id: user._id });
+        setLocalStorageValue({ token: user.token, _id: user._id });
         setIsAuth(true);
         navigate('/');
     }
@@ -45,7 +53,7 @@ export const AuthProvider = ({ children }) => {
     }
 
     return (
-        <Context.Provider value={{ user, userLogin, userLogout, isAuth }}>
+        <Context.Provider value={{ user, userLogin, userRegister, userLogout, isAuth }}>
             {children}
         </Context.Provider>
     )
