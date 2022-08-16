@@ -1,0 +1,33 @@
+.articles {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto;
+    gap: 10px;
+}
+
+.btnContainer {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #4B372F;
+    background-color: #e9d2c0;
+    width: 150px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.userAvatar {
+    width: 240px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.userInfo {
+    display: flex;
+    gap: 50px;
+    padding-bottom: 30px;
+}

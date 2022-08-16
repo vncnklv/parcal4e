@@ -13,6 +13,7 @@ import { Logout } from './components/pages/logout/Logout';
 import { Edit } from './components/pages/edit/Edit';
 import { Create } from './components/pages/create/Create';
 import { UserProfile } from './components/pages/user-profile/UserProfile';
+import { EditUser } from './components/pages/user-profile/edit-user/EditUser';
 
 import styles from "./App.module.css"
 import { AuthProvider } from './contexts/AuthProvider';
@@ -34,7 +35,14 @@ function App() {
 
                         <Route path='/logout' element={<Logout />} />
                         <Route path='/edit/:id' element={<Edit />} />
-                        <Route path='/user-profile' element={<UserProfile />} />
+                        <Route path='/user-profile' element={<UserProfile />} >
+                            <Route path="edit">
+                                <Route path="username" element={<EditUser attribute="username" />} />
+                                <Route path="avatar" element={<EditUser attribute="avatar" />} />
+                                <Route path="email" element={<EditUser attribute="email" />} />
+                                <Route path="password" element={<EditUser attribute="password" />} />
+                            </Route>
+                        </Route>
                         <Route path='/create' element={<Create />} />
 
                         <Route path='*' element={<NotFound />} />

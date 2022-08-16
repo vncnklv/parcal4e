@@ -17,3 +17,7 @@ export const verifyToken = async () => {
 export const getUserById = (id) => {
     return get(`${baseUrl}/${id}`);
 }
+
+export const updateUser = (data) => {
+    return post(`${baseUrl}/edit`, data);
+}

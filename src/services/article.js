@@ -46,3 +46,7 @@ export const getArticlesByCategory = (category, sorts = {}, page = 1) => {
 
     return get(url);
 }
+
+export const getUsersArticles = () => {
+    return get(`${baseUrl}/owned-by-current-user`);
+}
