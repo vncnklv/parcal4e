@@ -23,6 +23,13 @@ export const UserProfile = () => {
             .then(res => setArticles(res));
     }, [user._id]);
 
+    const changeState = (data) => {
+        setUserData((old) => ({
+            ...old,
+            ...data
+        }));
+    }
+
     return (
         <>
             <h1>Profile</h1>
@@ -54,7 +61,7 @@ export const UserProfile = () => {
                 <Link to="/user-profile/edit/password"><span className={styles.btn}>Change password</span></Link>
             </div>
 
-            <Outlet />
+            <Outlet context={changeState} />
 
             <h2>Your articles</h2>
             {articles.length > 0

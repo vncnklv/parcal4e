@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
+
 import { useNavigate } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
+
 import { updateUser } from "../../../../services/auth";
 
 export const EditUser = ({ attribute }) => {
     const [value, setValue] = useState('');
     const [error, setError] = useState(null);
+    const changeState = useOutletContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -19,6 +23,7 @@ export const EditUser = ({ attribute }) => {
     const clickHandler = () => {
         updateUser({ [attribute]: value })
             .then(() => {
+                changeState({ [attribute]: value });
                 navigate('/user-profile');
             })
             .catch(err => {
