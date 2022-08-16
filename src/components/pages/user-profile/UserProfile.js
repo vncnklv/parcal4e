@@ -24,7 +24,7 @@ export const UserProfile = () => {
     }, [user._id]);
 
     return (
-        <main>
+        <>
             <h1>Profile</h1>
             <h2>Your Information</h2>
             <div className={styles.userInfo}>
@@ -63,6 +63,6 @@ export const UserProfile = () => {
                 </div>
                 : <div>You don't have any articles onboarded!</div>
             }
-        </main>
+        </>
     );
 }

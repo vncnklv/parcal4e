@@ -65,7 +65,7 @@ export const Edit = () => {
     }
 
     return (
-        <main>
+        <>
             <h1>Edit Article</h1>
 
             <form onSubmit={submitHandler}>
@@ -135,6 +135,6 @@ export const Edit = () => {
 
                 <input type="submit" value="Edit" />
             </form>
-        </main>
+        </>
     );
 }

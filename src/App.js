@@ -17,6 +17,7 @@ import { EditUser } from './components/pages/user-profile/edit-user/EditUser';
 
 import styles from "./App.module.css"
 import { AuthProvider } from './contexts/AuthProvider';
+import { RouteGuard } from './components/RouteGuard';
 
 function App() {
     return (
@@ -33,17 +34,19 @@ function App() {
                         <Route path='/register' element={<Register />} />
                         <Route path='/not-found' element={<NotFound />} />
 
-                        <Route path='/logout' element={<Logout />} />
-                        <Route path='/edit/:id' element={<Edit />} />
-                        <Route path='/user-profile' element={<UserProfile />} >
-                            <Route path="edit">
-                                <Route path="username" element={<EditUser attribute="username" />} />
-                                <Route path="avatar" element={<EditUser attribute="avatar" />} />
-                                <Route path="email" element={<EditUser attribute="email" />} />
-                                <Route path="password" element={<EditUser attribute="password" />} />
+                        <Route element={<RouteGuard />}>
+                            <Route path='/logout' element={<Logout />} />
+                            <Route path='/edit/:id' element={<Edit />} />
+                            <Route path='/user-profile' element={<UserProfile />} >
+                                <Route path="edit">
+                                    <Route path="username" element={<EditUser attribute="username" />} />
+                                    <Route path="avatar" element={<EditUser attribute="avatar" />} />
+                                    <Route path="email" element={<EditUser attribute="email" />} />
+                                    <Route path="password" element={<EditUser attribute="password" />} />
+                                </Route>
                             </Route>
+                            <Route path='/create' element={<Create />} />
                         </Route>
-                        <Route path='/create' element={<Create />} />
 
                         <Route path='*' element={<NotFound />} />
                     </Routes>

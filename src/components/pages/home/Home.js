@@ -16,11 +16,11 @@ export const Home = () => {
     }, [isAuth]);
 
     return (
-        <main>
+        <>
             <h1>MOST LIKED</h1>
             <div className={styles.articles}>
                 {articles.map(a => <Article key={a._id} {...a} />)}
             </div>
-        </main>
+        </>
     );
 }

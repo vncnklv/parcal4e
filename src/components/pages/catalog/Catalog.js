@@ -47,7 +47,7 @@ export const Catalog = () => {
     }
 
     return (
-        <main>
+        <>
             <h1>Catalog</h1>
             <div className={styles.container}>
                 <div className={styles.sortsContainer}>
@@ -58,6 +58,6 @@ export const Catalog = () => {
                 </div>
             </div>
             <Pager {...pages} goToNextPage={goToNextPage} goToPrevPage={goToPrevPage} />
-        </main>
+        </>
     );
 }

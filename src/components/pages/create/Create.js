@@ -84,7 +84,7 @@ export const Create = () => {
     };
 
     return (
-        <main>
+        <>
             <h1>Add Article</h1>
 
             <form onSubmit={submitHandler}>
@@ -167,6 +167,6 @@ export const Create = () => {
 
                 <button>Add</button>
             </form>
-        </main>
+        </>
     );
 }

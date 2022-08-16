@@ -26,7 +26,7 @@ export const Login = () => {
     }
 
     return (
-        <main>
+        <>
             <form onSubmit={submitHandler}>
                 <label htmlFor="username">
                     Username
@@ -41,6 +41,6 @@ export const Login = () => {
                 <input type="submit" value="Login" />
                 {error && <span>{error.message}</span>}
             </form>
-        </main>
+        </>
     );
 }
